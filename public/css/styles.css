@@ -1,0 +1,41 @@
+.header_nav {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 0;
+    padding-right: 0;
+    list-style: none;
+}
+.header_nav_right li{
+    margin-right: 30px;
+}
+/* エラーメッセージのスタイル */
+.error {
+    color: red;
+}
+/* 成功メッセージのスタイル*/
+.success {
+    color: green;
+}
+
+.textarea {
+    display: block;
+}
+
+.delete {
+    display: inline;
+}
+
+/*投稿のcss*/
+.posts {
+    padding: 0px;
+}
+.post {
+    margin-bottom: 30px;
+}
+.post_body_main {
+    display: flex;
+}
+.post_body_heading {
+    background-color: #dddddd;
+    font-weight: bold;
+}
