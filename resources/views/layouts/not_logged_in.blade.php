@@ -2,7 +2,7 @@
 
 @section('header')
 <header>
-    <ul class="header_nav">
+    <ul class="not_logged_in_header">
         <li>
             <a href="{{ route('register') }}">
                 サインアップ

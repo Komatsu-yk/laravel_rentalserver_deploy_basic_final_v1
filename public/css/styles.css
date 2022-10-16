@@ -1,3 +1,12 @@
+.not_logged_in_header {
+    display: flex;
+    padding-left: 0;
+}
+.not_logged_in_header li {
+    margin-right: 30px;
+    list-style: none;
+}
+
 .header_nav {
     display: flex;
     justify-content: space-between;
@@ -5,6 +14,7 @@
     padding-right: 0;
     list-style: none;
 }
+
 .header_nav_right li{
     margin-right: 30px;
 }
