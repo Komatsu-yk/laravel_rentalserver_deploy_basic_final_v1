@@ -13,7 +13,6 @@
                 <textarea name="comment" rows="5" cols="30" class="textarea">{{ $post->comment }}</textarea>
             </label>
         </div>
-        
         <input type="submit" value="投稿">
     </form>
 @endsection

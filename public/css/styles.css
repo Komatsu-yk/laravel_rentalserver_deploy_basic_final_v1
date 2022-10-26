@@ -15,7 +15,10 @@
     list-style: none;
 }
 
-.header_nav_right li{
+.header_left {
+    display: flex;
+}
+.header_left li {
     margin-right: 30px;
 }
 /* エラーメッセージのスタイル */
@@ -48,4 +51,17 @@
 .post_body_heading {
     background-color: #dddddd;
     font-weight: bold;
+}
+
+dt {
+    font-weight: bold;
+}
+
+dd {
+    margin: 0px 0px 10px 0px;
+}
+
+/*フォロー*/
+.follow {
+    cursor: pointer;
 }

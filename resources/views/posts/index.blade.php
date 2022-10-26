@@ -3,6 +3,14 @@
 @section('title', $title)
 
 @section('content')
+    <h2>おすすめユーザー</h2>
+    <ul class="recommended_users">
+        @forelse($recommended_users as $recommend_user)
+            <li><a href="{{ route('users.show', $recommend_user) }}">{{ $recommend_user->name }}</a></li>
+        @empty
+            <li>おすすめユーザーはいません。</li>
+        @endforelse
+    </ul>
     <h1>{{ $title }}</h1>
     <ul class="posts">
         @forelse($posts as $post)
@@ -18,14 +26,16 @@
                                 {!! nl2br(e($post->comment)) !!}
                             </div>
                         </div>
-                        <div class="post_body_footer">
-                            [<a href="{{ route('posts.edit', $post) }}">編集</a>]
-                        <form method="post" class="delete" action="{{ route('posts.destroy', $post) }}">
-                            @csrf
-                            @method('delete')
-                            <input type="submit" value="削除">
-                        </form>
-                        </div>
+                        @if(Auth::user()->id === $post->user->id)
+                            <div class="post_body_footer">
+                                [<a href="{{ route('posts.edit', $post) }}">編集</a>]
+                            <form method="post" class="delete" action="{{ route('posts.destroy', $post) }}">
+                                @csrf
+                                @method('delete')
+                                <input type="submit" value="削除">
+                            </form>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </li>

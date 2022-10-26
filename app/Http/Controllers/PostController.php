@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Post;
+use App\User;
+
 use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
@@ -16,10 +18,13 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = \Auth::user()->posts()->latest()->get();
+        $user            = \Auth::user();
+        $follow_user_ids = $user->follow_users->pluck('id');
+        $user_posts = $user->posts()->orWhereIn('user_id', $follow_user_ids)->latest()->limit(3)->get();
         return view('posts.index', [
-            'title' => '投稿一覧',
-            'posts' => $posts,
+            'title'             => '投稿一覧',
+            'posts'             => $user_posts,
+            'recommended_users' => User::whereNotIn('id', $follow_user_ids)->recommend($user->id)->get(),
         ]);
     }
 
@@ -46,7 +51,7 @@ class PostController extends Controller
         Post::create([
             'user_id' => \Auth::user()->id,
             'comment' => $request->comment,
-            'image' => '',
+            'image'   => '',
         ]);
         session()->flash('success', '投稿を追加しました');
         return redirect()->route('posts.index');
@@ -76,7 +81,7 @@ class PostController extends Controller
         $post = Post::find($id);
         return view('posts.edit', [
             'title' => '投稿編集',
-            'post' => $post,
+            'post'  => $post,
         ]);
     }
 

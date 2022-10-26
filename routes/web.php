@@ -16,3 +16,15 @@ Route::get('/', 'PostController@index');
 Auth::routes();
 
 Route::resource('posts', 'PostController');
+
+Route::get('/users/edit', 'UserController@edit')->name('users.edit');
+Route::patch('/users', 'UserController@update')->name('users.update');
+
+Route::resource('users', 'UserController')->only([
+    'show',
+]);
+
+Route::resource('follows', 'FollowController')->only([
+    'index', 'store', 'destroy'
+]);
+Route::get('/follower', 'FollowController@followerIndex');
