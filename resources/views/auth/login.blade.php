@@ -21,4 +21,9 @@
         
         <input type="submit" value="ログイン">
     </form>
+    
+    <div>
+        email: test@nnnn<br>
+        password: testnnnn
+    </div>
 @endsection

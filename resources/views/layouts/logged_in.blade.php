@@ -3,11 +3,21 @@
 @section('header')
 <header>
     <ul class="header_nav">
-        <li class="header_left">
-            <a href="{{ route('posts.index') }}">
-                仮ロゴ
-            </a>
-        </li>
+        <div class="header_left">
+            <li>
+                <a href="{{ route('posts.index') }}">
+                    仮ロゴ
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('users.show', Auth::user()) }}">ユーザープロフィール</a>
+            </li>
+            <li>
+                <a href="{{ route('follows.index') }}">
+                    フォロー一覧
+                </a>
+            </li>
+        </div>
         <li class="header_right">
             <form action="{{ route('logout') }}" method="POST">
                 @csrf
