@@ -23,7 +23,7 @@
     </form>
     
     <div>
-        email: test@nnnn<br>
-        password: testnnnn
+        email: test@0000~test@4444<br>
+        password: test0000~test4444
     </div>
 @endsection
