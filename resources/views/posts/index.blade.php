@@ -50,4 +50,5 @@
             <li>投稿がありません</li>
         @endforelse
     </ul>
+    {{ $posts->appends(['keyword' => $keyword ?? '' ])->links() }}
 @endsection

@@ -47,13 +47,18 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        $user = User::find($id);
+        if(is_null($user)){
+            $posts = [];
+        }else{
+            $posts = $user->posts()->latest()->paginate(3);
+        }
+        
         return view('users.show',[
             'title' => 'ユーザー詳細',
             'user'  => $user,
-            'posts' => $user->posts()->latest()->get(),
+            'posts' => $posts,
         ]);   
     }
 

@@ -10,7 +10,7 @@ class FollowController extends Controller
 {
     public function index()
     {
-        $follow_users = \Auth::user()->follow_users;
+        $follow_users = \Auth::user()->follow_users()->paginate(10);
         return view('follows.index', [
             'title'        => 'フォロー一覧',
             'follow_users' => $follow_users,
@@ -38,7 +38,7 @@ class FollowController extends Controller
     
     public function followerIndex()
     {
-        $followers = \Auth::user()->followers;
+        $followers = \Auth::user()->followers()->paginate(10);
         return view('follows.follower_index', [
             'title'     => 'フォロワー一覧',
             'followers' => $followers
