@@ -11,6 +11,7 @@
 |
 */
 
+<<<<<<< HEAD
 Route::get('/', 'PostController@index');
 
 Auth::routes();
@@ -32,3 +33,8 @@ Route::resource('follows', 'FollowController')->only([
     'index', 'store', 'destroy'
 ]);
 Route::get('/follower', 'FollowController@followerIndex')->name('follower.followerIndex');
+=======
+Route::get('/', function () {
+    return view('welcome');
+});
+>>>>>>> master
