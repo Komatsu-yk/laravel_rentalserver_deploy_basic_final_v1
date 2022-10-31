@@ -10,11 +10,18 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('users.show', Auth::user()) }}">ユーザープロフィール</a>
+                <a href="{{ route('users.show', Auth::user()) }}">
+                    ユーザープロフィール
+                </a>
             </li>
             <li>
                 <a href="{{ route('follows.index') }}">
                     フォロー一覧
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('follower.followerIndex') }}">
+                    フォロワー一覧
                 </a>
             </li>
         </div>

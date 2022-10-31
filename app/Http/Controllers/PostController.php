@@ -16,15 +16,23 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $user            = \Auth::user();
         $follow_user_ids = $user->follow_users->pluck('id');
-        $user_posts = $user->posts()->orWhereIn('user_id', $follow_user_ids)->latest()->limit(3)->get();
+        $user_posts      = $user->posts()->orWhereIn('user_id', $follow_user_ids)->latest()->limit(3)->get();
+        $keyword         = $request->input('keyword');
+        $keyword         = preg_replace('/　|\s+/', '', $keyword);
+        
+        if(mb_strlen($keyword)) {
+            $user_posts = Post::where('comment', 'LIKE', "%{$keyword}%")->latest()->get();
+        }
+        
         return view('posts.index', [
             'title'             => '投稿一覧',
             'posts'             => $user_posts,
             'recommended_users' => User::whereNotIn('id', $follow_user_ids)->recommend($user->id)->get(),
+            'keyword'           => $keyword
         ]);
     }
 

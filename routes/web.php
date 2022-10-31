@@ -24,7 +24,11 @@ Route::resource('users', 'UserController')->only([
     'show',
 ]);
 
+Route::resource('likes', 'LikeController')->only([
+    'index', 'store', 'destroy'
+]);
+
 Route::resource('follows', 'FollowController')->only([
     'index', 'store', 'destroy'
 ]);
-Route::get('/follower', 'FollowController@followerIndex');
+Route::get('/follower', 'FollowController@followerIndex')->name('follower.followerIndex');
