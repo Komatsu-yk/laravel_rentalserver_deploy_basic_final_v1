@@ -146,10 +146,11 @@ return [
     */
 
     'attributes' => [
-        'name' => 'ユーザー名',
-        'email' => 'メールアドレス',
-        'password' => 'パスワード',
-        'password_confirmation' => 'パスワード（確認用）'
+        'name'                  => 'ユーザー名',
+        'email'                 => 'メールアドレス',
+        'password'              => 'パスワード',
+        'password_confirmation' => 'パスワード（確認用）',
+        'comment'               => 'コメント'
     ],
 
 ];

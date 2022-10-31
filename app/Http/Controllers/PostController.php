@@ -20,18 +20,18 @@ class PostController extends Controller
     {
         $user            = \Auth::user();
         $follow_user_ids = $user->follow_users->pluck('id');
-        $user_posts      = $user->posts()->orWhereIn('user_id', $follow_user_ids)->latest()->limit(3)->get();
+        $user_posts      = $user->posts()->orWhereIn('user_id', $follow_user_ids)->latest()->paginate(3);
         $keyword         = $request->input('keyword');
         $keyword         = preg_replace('/　|\s+/', '', $keyword);
         
         if(mb_strlen($keyword)) {
-            $user_posts = Post::where('comment', 'LIKE', "%{$keyword}%")->latest()->get();
+            $user_posts = Post::where('comment', 'LIKE', "%{$keyword}%")->latest()->paginate(3);
         }
         
         return view('posts.index', [
             'title'             => '投稿一覧',
             'posts'             => $user_posts,
-            'recommended_users' => User::whereNotIn('id', $follow_user_ids)->recommend($user->id)->get(),
+            'recommended_users' => User::whereNotIn('id', $follow_user_ids)->recommend($user->id)->get()->random(3),
             'keyword'           => $keyword
         ]);
     }
@@ -84,9 +84,8 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        $post = Post::find($id);
         return view('posts.edit', [
             'title' => '投稿編集',
             'post'  => $post,
@@ -100,9 +99,8 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PostRequest $request, $id)
+    public function update(PostRequest $request, Post $post)
     {
-        $post = Post::find($id);
         $post->update($request->only(['comment']));
         session()->flash('success', '投稿を編集しました');
         return redirect()->route('posts.index');
@@ -114,9 +112,8 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        $post = Post::find($id);
         $post->delete();
         \Session::flash('success', '投稿を削除しました');
         return redirect()->route('posts.index');

@@ -44,7 +44,7 @@ class User extends Authenticatable
     }
     
     public function scopeRecommend($query, $self_id){
-        return $query->where('id', '!=', $self_id)->latest()->limit(5);
+        return $query->where('id', '!=', $self_id);
     }
     
     public function follows(){

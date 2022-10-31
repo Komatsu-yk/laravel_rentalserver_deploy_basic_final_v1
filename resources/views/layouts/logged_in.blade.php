@@ -25,13 +25,17 @@
                 </a>
             </li>
         </div>
-        <li class="header_right">
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <input type="submit" value="ログアウト">
-            </form>
-            <input type="button" onclick="location.href='{{ route('posts.create') }}'" value="新規投稿">
-        </li>
+        <div class="header_right">
+            <li>
+                <input type="button" onclick="location.href='{{ route('posts.create') }}'" value="新規投稿">
+            </li>
+            <li>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <input type="submit" value="ログアウト">
+                </form>
+            </li>
+        </div>
     </ul>
 </header>
 @endsection

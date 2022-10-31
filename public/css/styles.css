@@ -21,6 +21,12 @@
 .header_left li {
     margin-right: 30px;
 }
+.header_right {
+    display: flex;
+}
+.header_right li {
+    margin-left: 30px;
+}
 /* エラーメッセージのスタイル */
 .error {
     color: red;
