@@ -38,7 +38,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-<<<<<<< HEAD
     
     public function posts(){
         return $this->hasMany('App\Post');
@@ -64,6 +63,4 @@ class User extends Authenticatable
         $result = $this->follow_users->pluck('id')->contains($user->id);
         return $result;
     }
-=======
->>>>>>> master
 }
