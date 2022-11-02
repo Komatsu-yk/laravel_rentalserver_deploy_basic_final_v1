@@ -124,3 +124,4 @@ class PostController extends Controller
         $this->middleware('auth');
     }
 }
+

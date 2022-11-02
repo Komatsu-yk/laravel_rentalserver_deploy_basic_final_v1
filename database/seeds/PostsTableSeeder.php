@@ -39,3 +39,4 @@ class PostsTableSeeder extends Seeder
         }
     }
 }
+
