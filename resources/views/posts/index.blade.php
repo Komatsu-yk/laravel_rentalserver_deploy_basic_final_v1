@@ -13,7 +13,11 @@
     <h2>おすすめユーザー</h2>
     <ul class="recommended_users">
         @forelse($recommended_users as $recommend_user)
-            <li><a href="{{ route('users.show', $recommend_user) }}">{{ $recommend_user->name }}</a></li>
+            <li>
+                <a href="{{ route('users.show', $recommend_user) }}">
+                    {{ $recommend_user->name }}
+                </a>
+            </li>
         @empty
             <li>おすすめユーザーはいません。</li>
         @endforelse
@@ -25,7 +29,10 @@
                 <div class="post_content">
                     <div class="post_body">
                         <div class="post_body_heading">
-                            投稿者:{{ $post->user->name }}
+                            投稿者:
+                            <a href="{{ route('users.show', $post->user) }}">
+                                {{ $post->user->name }}
+                            </a>
                             ({{ $post->created_at }})
                         </div>
                         <div class="post_body_main">

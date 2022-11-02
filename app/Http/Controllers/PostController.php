@@ -20,12 +20,12 @@ class PostController extends Controller
     {
         $user            = \Auth::user();
         $follow_user_ids = $user->follow_users->pluck('id');
-        $user_posts      = $user->posts()->orWhereIn('user_id', $follow_user_ids)->latest()->paginate(3);
+        $user_posts      = $user->posts()->orWhereIn('user_id', $follow_user_ids)->latest()->paginate(10);
         $keyword         = $request->input('keyword');
         $keyword         = preg_replace('/　|\s+/', '', $keyword);
         
         if(mb_strlen($keyword)) {
-            $user_posts = Post::where('comment', 'LIKE', "%{$keyword}%")->latest()->paginate(3);
+            $user_posts = Post::where('comment', 'LIKE', "%{$keyword}%")->latest()->paginate(10);
         }
         
         return view('posts.index', [
@@ -124,3 +124,4 @@ class PostController extends Controller
         $this->middleware('auth');
     }
 }
+

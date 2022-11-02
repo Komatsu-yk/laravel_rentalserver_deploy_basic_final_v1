@@ -12,14 +12,19 @@
 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Route::get('/', 'PostController@index');
 
+=======
+>>>>>>> issue/#5
 Auth::routes();
+
+Route::get('/', 'PostController@index');
 
 Route::resource('posts', 'PostController');
 
 Route::get('/users/edit', 'UserController@edit')->name('users.edit');
-Route::patch('/users', 'UserController@update')->name('users.update');
+Route::patch('/users/edit', 'UserController@update')->name('users.update');
 
 Route::resource('users', 'UserController')->only([
     'show',
@@ -33,8 +38,11 @@ Route::resource('follows', 'FollowController')->only([
     'index', 'store', 'destroy'
 ]);
 Route::get('/follower', 'FollowController@followerIndex')->name('follower.followerIndex');
+<<<<<<< HEAD
 =======
 Route::get('/', function () {
     return view('welcome');
 });
 >>>>>>> master
+=======
+>>>>>>> issue/#5
