@@ -11,14 +11,14 @@
 |
 */
 
-Route::get('/', 'PostController@index');
-
 Auth::routes();
+
+Route::get('/', 'PostController@index');
 
 Route::resource('posts', 'PostController');
 
 Route::get('/users/edit', 'UserController@edit')->name('users.edit');
-Route::patch('/users', 'UserController@update')->name('users.update');
+Route::patch('/users/edit', 'UserController@update')->name('users.update');
 
 Route::resource('users', 'UserController')->only([
     'show',

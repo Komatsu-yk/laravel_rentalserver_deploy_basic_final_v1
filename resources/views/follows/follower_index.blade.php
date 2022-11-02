@@ -6,7 +6,9 @@
     <ul class="followers">
         @forelse($followers as $follower)
             <li class="follower">
-                {{ $follower->name }}
+                <a href="{{ route('users.show', $follower) }}">
+                    {{ $follower->name }}
+                </a>
                 @if(Auth::user()->isFollowing($follower))
                     <form method="post" action="{{ route('follows.destroy', $follower)}}" class="follow">
                         @csrf
