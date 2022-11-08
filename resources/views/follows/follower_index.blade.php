@@ -1,5 +1,7 @@
 @extends('layouts.logged_in')
 
+@section('title', $title)
+
 @section('content')
     <h1>{{ $title }}</h1>
     
@@ -7,6 +9,11 @@
         @forelse($followers as $follower)
             <li class="follower">
                 <a href="{{ route('users.show', $follower) }}">
+                    @if($follower->image !== '')
+                        <img src="{{ \Storage::url($follower->image) }}" class="user_icon">
+                    @else
+                        <img src="{{ asset('images/no_image.png') }}" class="user_icon">
+                    @endif
                     {{ $follower->name }}
                 </a>
                 @if(Auth::user()->isFollowing($follower))

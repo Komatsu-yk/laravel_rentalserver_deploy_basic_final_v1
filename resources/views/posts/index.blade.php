@@ -15,6 +15,11 @@
         @forelse($recommended_users as $recommend_user)
             <li>
                 <a href="{{ route('users.show', $recommend_user) }}">
+                    @if($recommend_user->image !== '')
+                        <img src="{{ \Storage::url($recommend_user->image) }}" class="user_icon">
+                    @else
+                        <img src="{{ asset('images/no_image.png') }}" class="user_icon">
+                    @endif
                     {{ $recommend_user->name }}
                 </a>
             </li>
@@ -31,11 +36,27 @@
                         <div class="post_body_heading">
                             投稿者:
                             <a href="{{ route('users.show', $post->user) }}">
+                                @if($post->user->image !== '')
+                                    <img src="{{ \Storage::url($post->user->image) }}" class="user_icon">
+                                @else
+                                    <img src="{{ asset('images/no_image.png') }}" class="user_icon">
+                                @endif
                                 {{ $post->user->name }}
                             </a>
                             ({{ $post->created_at }})
                         </div>
                         <div class="post_body_main">
+                            <div class="post_body_main_img">
+                                @if($post->image !== '')
+                                    <img src="{{ \Storage::url($post->image) }}">
+                                @else
+                                    <img src="{{ asset('images/no_image.png') }}">
+                                @endif
+                                
+                                @if(Auth::user()->id === $post->user->id)
+                                    <a href="{{ route('posts.edit_image', $post) }}">画像を変更</a>
+                                @endif
+                            </div>
                             <div class="post_body_main_comment">
                                 {!! nl2br(e($post->comment)) !!}
                             </div>

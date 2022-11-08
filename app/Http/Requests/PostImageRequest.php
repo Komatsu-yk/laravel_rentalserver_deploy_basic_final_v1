@@ -4,9 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-use Illuminate\Validation\Rule;
-
-class UserRequest extends FormRequest
+class PostImageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +23,14 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        $user = \Auth::user();
         return [
-            'name'    => ['required', 'string', 'max:255'],
-            'email'   => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'profile' => ['nullable', 'string', 'max:200'],
+            'image' => [
+                'required',
+                'file',
+                'image',
+                'mimes:jpeg,jpg,png',
+                'dimensions:min_width=50,min_height=50,max_width=1000,max_height=1000',
+            ],
         ];
     }
 }

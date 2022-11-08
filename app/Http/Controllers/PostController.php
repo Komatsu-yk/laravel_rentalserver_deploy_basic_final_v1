@@ -8,6 +8,8 @@ use App\Post;
 use App\User;
 
 use App\Http\Requests\PostRequest;
+use App\Http\Requests\PostImageRequest;
+use App\Services\FileUploadService;
 
 class PostController extends Controller
 {
@@ -18,11 +20,16 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        $user            = \Auth::user();
-        $follow_user_ids = $user->follow_users->pluck('id');
-        $user_posts      = $user->posts()->orWhereIn('user_id', $follow_user_ids)->latest()->paginate(10);
-        $keyword         = $request->input('keyword');
-        $keyword         = preg_replace('/　|\s+/', '', $keyword);
+        $user              = \Auth::user();
+        $follow_user_ids   = $user->follow_users->pluck('id');
+        $user_posts        = $user->posts()->orWhereIn('user_id', $follow_user_ids)->latest()->paginate(10);
+        $recommended_users = User::whereNotIn('id', $follow_user_ids)->recommend($user->id)->get();
+        $keyword           = $request->input('keyword');
+        $keyword           = preg_replace('/　|\s+/', '', $keyword);
+        
+        if($recommended_users->count() > 3){
+            $recommended_users = $recommended_users->random(3);
+        }
         
         if(mb_strlen($keyword)) {
             $user_posts = Post::where('comment', 'LIKE', "%{$keyword}%")->latest()->paginate(10);
@@ -31,7 +38,7 @@ class PostController extends Controller
         return view('posts.index', [
             'title'             => '投稿一覧',
             'posts'             => $user_posts,
-            'recommended_users' => User::whereNotIn('id', $follow_user_ids)->recommend($user->id)->get()->random(3),
+            'recommended_users' => $recommended_users,
             'keyword'           => $keyword
         ]);
     }
@@ -54,12 +61,15 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostRequest $request)
+    public function store(PostRequest $request, FileUploadService $service)
     {
+        //画像追加
+        $path = $service->saveImage($request->file('image'));
+        
         Post::create([
             'user_id' => \Auth::user()->id,
             'comment' => $request->comment,
-            'image'   => '',
+            'image'   => $path,
         ]);
         session()->flash('success', '投稿を追加しました');
         return redirect()->route('posts.index');
@@ -105,6 +115,30 @@ class PostController extends Controller
         session()->flash('success', '投稿を編集しました');
         return redirect()->route('posts.index');
     }
+    
+    public function editImage(Post $post)
+    {
+        return view('posts.edit_image', [
+            'title' => '画像変更画面',
+            'post'  => $post
+        ]);
+    }
+    
+    public function updateImage(Post $post, PostImageRequest $request, FileUploadService $service)
+    {
+        $path  = $service->saveImage($request->file('image'));
+        
+        if($post->image !== ''){
+            \Storage::disk('public')->delete('photos/' . $post->image);
+        }
+        
+        $post->update([
+            'image' => $path,
+        ]);
+        
+        session()->flash('success', '画像を変更しました');
+        return redirect()->route('posts.index');
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -114,6 +148,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if($post->image !== ''){
+            \Storage::disk('public')->delete($post->image);
+        }
         $post->delete();
         \Session::flash('success', '投稿を削除しました');
         return redirect()->route('posts.index');
@@ -123,5 +160,6 @@ class PostController extends Controller
     {
         $this->middleware('auth');
     }
+    
 }
 
