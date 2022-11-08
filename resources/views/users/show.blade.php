@@ -30,6 +30,26 @@
                     @endif
                 @endif
             </dd>
+            <dt>プロフィール画像</dt>
+            <dd>
+                @if($user->image !== '')
+                    <img src="{{ \Storage::url($user->image) }}">
+                @else
+                    <img src="{{ asset('images/no_image.png') }}">
+                @endif
+                                
+                @if(Auth::user()->id === $user->id)
+                    <a href="{{ route('users.edit_image', $user) }}">画像を変更</a>
+                @endif
+            </dd>
+            <dt>プロフィール</dt>
+            <dd>
+                @if($user->profile !== '')
+                    {{ $user->profile }}
+                @else
+                    プロフィールが設定されていません。
+                @endif
+            </dd>
             <dt>{{ $user->name }}の投稿一覧</dt>
             <dd>
                 <ul class="posts">
