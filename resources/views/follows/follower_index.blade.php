@@ -3,9 +3,9 @@
 @section('title', $title)
 
 @section('content')
-    <h1>{{ $title }}</h1>
+    <h4><span>{{ $title }}</span></h4>
     
-    <ul class="followers">
+    <ul class="followers fit container">
         @forelse($followers as $follower)
             <li class="follower">
                 <a href="{{ route('users.show', $follower) }}">
@@ -20,13 +20,13 @@
                     <form method="post" action="{{ route('follows.destroy', $follower)}}" class="follow">
                         @csrf
                         @method('delete')
-                        <input type="submit" value="フォロー解除">
+                            <input type="submit" value="フォロー解除">
                     </form>
                 @else
                     <form method="post" action="{{ route('follows.store') }}" class="follow">
                         @csrf
-                        <input type="hidden" name="follow_id" value="{{ $follower->id }}">
-                        <input type="submit" value="フォロー">
+                            <input type="hidden" name="follow_id" value="{{ $follower->id }}">
+                            <input type="submit" value="フォロー">
                     </form>
                 @endif
             </li>

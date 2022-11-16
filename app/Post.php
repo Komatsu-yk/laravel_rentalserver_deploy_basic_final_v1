@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $fillable = ['user_id', 'comment', 'image'];
+    protected $fillable = ['user_id', 'comment', 'image', 'url'];
     
     public function user(){
         return $this->belongsTo('App\User');
     }
     
-    // public function scopeRecommend($query){
-    //     return $query->latest()->limit(3);
-    // }
+    public function comments(){
+        return $this->hasMany('App\Comment');
+    }
 }
