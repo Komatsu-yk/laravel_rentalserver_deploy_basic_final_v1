@@ -14,7 +14,7 @@
                         @if($post->user->image !== '')
                             <img src="{{ \Storage::url($post->user->image) }}" class="user_icon">
                         @else
-                            <img src="{{ secure_asset('images/no_image.png') }}" class="user_icon">
+                            <img src="{{ asset('images/no_image.png') }}" class="user_icon">
                         @endif
                         {{ $post->user->name }}
                     </a>
@@ -45,7 +45,7 @@
             @if($post->image !== '')
                 <img src="{{ \Storage::url($post->image) }}">
             @else
-                <img src="{{ secure_asset('images/no_image.png') }}">
+                <img src="{{ asset('images/no_image.png') }}">
             @endif
                                         
             @if(Auth::user()->id === $post->user->id)
