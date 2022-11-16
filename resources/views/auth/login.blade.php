@@ -7,11 +7,16 @@
         @csrf
         <div>
             <label>
-                <P>ユーザー名:</P>
-                <input type="name" name="name" class="input">
+                <p>メールアドレス:</p>
+                <input type="email" name="email" class="input">
             </label>
         </div>
-        
+        <!--<div>-->
+        <!--    <label>-->
+        <!--        <P>ユーザー名:</P>-->
+        <!--        <input type="name" name="name" class="input">-->
+        <!--    </label>-->
+        <!--</div>-->
         <div>
             <label>
                 <p>パスワード:</p>
