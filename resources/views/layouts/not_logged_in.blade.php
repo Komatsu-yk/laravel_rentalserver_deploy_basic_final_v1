@@ -3,7 +3,7 @@
 @section('header')
 <header>
     <div class="body container">
-        <img src="{{ secure_asset('images/komatsu_logo.png') }}" alt="サイトロゴ" class="logo">
+        <img src="{{ asset('images/komatsu_logo.png') }}" alt="サイトロゴ" class="logo">
     </div>
     <div class="header_label">
         <div class="flex body container">

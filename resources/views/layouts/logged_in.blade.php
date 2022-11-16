@@ -5,7 +5,7 @@
     <div class="body container">
         <div class="top">
             <div>
-                <a href="{{ route('posts.index') }}"><img src="{{ secure_asset('images/komatsu_logo.png') }}" alt="サイトロゴ" class="logo"></a>
+                <a href="{{ route('posts.index') }}"><img src="{{ asset('images/komatsu_logo.png') }}" alt="サイトロゴ" class="logo"></a>
             </div>
             <div class="right fit">
                 <form action="{{ route('logout') }}" method="POST">
