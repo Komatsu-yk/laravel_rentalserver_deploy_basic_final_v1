@@ -14,12 +14,13 @@ Auth::routes();
 
 Route::get('/', 'PostController@index');
 
-Route::get('/', 'PostController@index');
-
 Route::get('/posts/{post}/edit_image', 'PostController@editImage')->name('posts.edit_image');
 Route::patch('/posts/{post}/edit_image', 'PostController@updateImage')->name('posts.update_image');
 Route::resource('posts', 'PostController');
 
+Route::resource('comments', 'CommentController')->only([
+    'store', 'destroy'
+]);
 
 Route::get('/users/edit', 'UserController@edit')->name('users.edit');
 Route::patch('/users/edit', 'UserController@update')->name('users.update');

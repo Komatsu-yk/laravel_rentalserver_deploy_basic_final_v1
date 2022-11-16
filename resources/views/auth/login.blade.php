@@ -1,24 +1,25 @@
 @extends('layouts.not_logged_in')
 
 @section('content')
-    <h1>ログイン</h1>
+    <h4><span>ログイン</span></h4>
     
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('login') }}" class="edit fit container">
         @csrf
         <div>
             <label>
-                メールアドレス:
-                <input type="email" name="email">
+                <P>ユーザー名:</P>
+                <input type="name" name="name" class="input">
             </label>
         </div>
         
         <div>
             <label>
-                パスワード:
-                <input type="password" name="password">
+                <p>パスワード:</p>
+                <input type="password" name="password" class="input">
             </label>
         </div>
         
-        <input type="submit" value="ログイン">
+        <input type="submit" value="ログイン" class="input_button">
+        
     </form>
 @endsection

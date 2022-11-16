@@ -1,40 +1,40 @@
 @extends('layouts.not_logged_in')
 
 @section('content')
-    <h1>サインアップ</h1>
+    <h4><span>サインアップ</span></h4>
     
-    <form method="POST" action="{{ route('register') }}" >
+    <form method="POST" action="{{ route('register') }}" class="edit fit container">
         @csrf
         <div>
             <label>
-                ユーザー名:
-                <input type="text" name="name">
+                <P>ユーザー名:</P>
+                <input type="text" name="name" class="input">
             </label>
         </div>
         
         <div>
             <label>
-                メールアドレス:
-                <input type="email" name="email">
+                <p>メールアドレス:</p>
+                <input type="email" name="email" class="input">
             </label>
         </div>
         
         <div>
             <label>
-                パスワード:
-                <input type="password" name="password">
+                <p>パスワード:</p>
+                <input type="password" name="password" class="input">
             </label>
         </div>
         
         <div>
             <label>
-                パスワード（確認用）:
-                <input type="password" name="password_confirmation">
+                <p>パスワード（確認用）:</p>
+                <input type="password" name="password_confirmation" class="input">
             </label>
         </div>
         
         <div>
-            <input type="submit" value="登録">
+            <input type="submit" value="登録" class="input_button">
         </div>
     </form>
 @endsection

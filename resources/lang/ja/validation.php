@@ -151,6 +151,9 @@ return [
         'password'              => 'パスワード',
         'password_confirmation' => 'パスワード（確認用）',
         'comment'               => 'コメント',
+        'body'                  => 'コメント',
+        'image'                 => '画像',
+        'profile'               => 'プロフィール'
     ],
 
 ];

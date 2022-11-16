@@ -2,40 +2,47 @@
 
 @section('header')
 <header>
-    <ul class="header_nav">
-        <div class="header_left">
-            <li>
-                <a href="{{ route('posts.index') }}">
-                    仮ロゴ
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('users.show', Auth::user()) }}">
-                    ユーザープロフィール
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('follows.index') }}">
-                    フォロー一覧
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('follower.followerIndex') }}">
-                    フォロワー一覧
-                </a>
-            </li>
-        </div>
-        <div class="header_right">
-            <li>
-                <input type="button" onclick="location.href='{{ route('posts.create') }}'" value="新規投稿">
-            </li>
-            <li>
+    <div class="body container">
+        <div class="top">
+            <div>
+                <a href="{{ route('posts.index') }}"><img src="{{ asset('images/komatsu_logo.png') }}" alt="サイトロゴ" class="logo"></a>
+            </div>
+            <div class="right fit">
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <input type="submit" value="ログアウト">
                 </form>
-            </li>
+            </div>
         </div>
-    </ul>
+    </div>
+    <div class="header_label">
+        <div class="flex body container">
+            <ul class="flex">
+                <li>
+                    <a href="{{ route('posts.index') }}">
+                        ホーム
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('users.show', Auth::user()) }}">
+                        ユーザープロフィール
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('follows.index') }}">
+                        フォロー一覧
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('follower.followerIndex') }}">
+                        フォロワー一覧
+                    </a>
+                </li>
+            </ul>
+            <div class="right">
+                <input type="button" onclick="location.href='{{ route('posts.create') }}'" value="新規投稿">
+            </div>
+        </div>
+    </div>
 </header>
 @endsection

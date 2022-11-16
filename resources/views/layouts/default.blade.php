@@ -13,20 +13,26 @@
     <link rel="stylesheet" href="{{ secure_asset('css/styles.css') }}">
 </head>
 <body>
-    @yield('header')
-    
-    {{-- エラーメッセージの出力 --}}
-    @foreach($errors->all() as $error)
-        <p class="error">{{ $error }}</p>
-    @endforeach
-    
-    {{-- 成功メッセージの出力 --}}
-    @if (session()->has('success'))
-        <div class="success">
-            {{ session()->get('success') }}
+    <div class="main">
+            @yield('header')
+        <div class="body container">    
+            {{-- エラーメッセージの出力 --}}
+            @foreach($errors->all() as $error)
+                <p class="error">{{ $error }}</p>
+            @endforeach
+            
+            {{-- 成功メッセージの出力 --}}
+            @if (session()->has('success'))
+                <div class="success">
+                    {{ session()->get('success') }}
+                </div>
+            @endif
+           
+            @yield('content')
         </div>
-    @endif
-    
-    @yield('content')
+        <footer>
+            <p class="text">©</p>
+        </footer>
+    </div>
 </body>
 </html>

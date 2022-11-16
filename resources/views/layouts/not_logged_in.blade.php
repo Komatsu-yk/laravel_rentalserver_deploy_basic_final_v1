@@ -2,17 +2,24 @@
 
 @section('header')
 <header>
-    <ul class="not_logged_in_header">
-        <li>
-            <a href="{{ route('register') }}">
-                サインアップ
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('login') }}">
-                ログイン
-            </a>
-        </li>
-    </ul>
+    <div class="body container">
+        <img src="{{ asset('images/komatsu_logo.png') }}" alt="サイトロゴ" class="logo">
+    </div>
+    <div class="header_label">
+        <div class="flex body container">
+            <ul class="flex">
+                <li>
+                    <a href="{{ route('register') }}">
+                        サインアップ
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('login') }}">
+                        ログイン
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </header>
 @endsection
