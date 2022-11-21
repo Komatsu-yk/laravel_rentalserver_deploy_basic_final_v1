@@ -31,7 +31,7 @@
             @yield('content')
         </div>
         <footer>
-            <p class="text">© 2022 Yuki</p>
+            <p class="text">© 2022 Yuki Komatsu</p>
         </footer>
     </div>
 </body>
