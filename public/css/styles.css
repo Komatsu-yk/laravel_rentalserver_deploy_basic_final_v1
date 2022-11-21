@@ -1,0 +1,288 @@
+p{
+    margin: 0;    
+}
+span {
+    border-bottom: solid 7px #ccc;
+    font-weight: bold;
+}
+h4 {
+    padding-bottom: 6px;
+    border-bottom: solid 2px #ccc;
+    margin: 25px 0px 25px 0px;
+}
+a {
+    color: black;
+    text-decoration: none;
+}
+ul {
+    margin-bottom: 0;
+    padding: 0;
+}
+li {
+    list-style: none;
+}
+dt {
+    font-weight: bold;
+}
+
+dd {
+    margin: 0px 0px 10px 0px;
+}
+container {
+    margin: 0 auto;
+}
+header{
+    min-width: 1300px;
+}
+footer{
+    width: 100vw;
+    min-width: 1300px;
+    position: absolute;
+    bottom: 0;
+    background-color: #999999;
+}
+
+/* エラーメッセージのスタイル */
+.error {
+    color: red;
+}
+/* 成功メッセージのスタイル*/
+.success {
+    color: green;
+    margin: 20px 0 20px 0;
+}
+/*削除ボタン*/
+.delete {
+    display: inline;
+}
+/*ページ*/
+.pagination {
+    margin: 0 auto;
+    padding: 20px;
+    width: fit-content;
+}
+
+.main {
+    min-height: 100vh; 
+    position: relative;
+    padding-bottom: 60px; 
+    box-sizing: border-box;
+    
+}
+.body {
+    width: 1140px;
+    padding: 0px;
+}
+.fit {
+    width: fit-content;
+}
+.flex{
+   display: flex; 
+}
+.text {
+    text-align: center;
+}
+.textarea {
+    display: block;
+}
+.edit {
+    padding: 10px;
+    border: solid 1px #ccc;
+}
+.input {
+    width: 200px;
+}
+.edit_input{
+    width: 16em;
+}
+.input_button{
+    width: 200px;
+}
+
+/*フォローボタン*/
+.follow {
+    cursor: pointer;
+    display: inline-block;
+    /*display: block;*/
+}
+
+/*ヘッダー*/
+.top {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 10px;
+}
+.logo {
+    width: 500px;
+}
+
+.right {
+    margin-left: auto;
+    
+}
+.header_label {
+    background-color: black;
+    padding: 10px 0 10px 0;
+    margin-bottom: 10px;
+    
+}
+.header_label a {
+    margin-right: 40px;
+    color: white;
+    font-weight: bold;
+}
+
+/*おすすめユーザー*/
+.recommended_users{
+    padding: 0px;
+    width: 1000px;
+    display: flex;
+}
+.recommended_users li {
+    flex-grow: 1;
+}
+
+/*post*/
+.posts {
+    width: 1000px;
+    padding: 0px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px 10px
+}
+.post {
+    height: 550px;
+    width: 360px;
+    padding: 0;
+    border: solid 2px black;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+.post_body_heading {
+    padding: 10px 0px 10px 0px;
+    font-weight: bold;
+}
+.user_icon {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+.post_show_text {
+    font-size: 48px;
+    min-width: 1140px;
+}
+.post_body_main_img {
+    width: 320px;
+    padding: 0px;
+    border-top: solid 1px #ccc;
+    border-bottom: solid 1px #ccc;
+}
+.post_body_main_img img {
+    height: 300px;
+    width: 300px;
+    margin: 10px 0px 10px 0px;
+    object-fit: cover;
+    border-radius: 10px;
+    background-color: black;
+}
+.post_body_main_comment {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    height: 72px;
+    width: 20em;
+    margin: 0 auto;
+    
+}
+.post_body_footer {
+    width: 320px;
+    border-top: 1px solid #ccc;
+}
+
+/*user*/
+.profile_img {
+    width:600px;
+    background-color: black;
+}
+.user_post {
+    height: 520px;
+    width: 360px;
+    padding: 0;
+    border: solid 2px black;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+/*post_show*/
+.post_show_body {
+    background-image: linear-gradient(0deg, transparent calc(100% - 1px), #f2f2f2 calc(100% - 1px)),
+        linear-gradient(90deg, transparent calc(100% - 1px), #f0f0f0 calc(100% - 1px));
+    background-size: 16px 16px;
+    background-repeat: repeat;
+    background-position: center center;
+    border: solid 1px black;
+    box-sizing: border-box;
+    padding: 0px;
+    height: 1140px;
+    width: 1140px;
+    position: relative;
+}
+.post_show_body_main_comment {
+    width: 20em;
+    padding: 10px 0 10px 0;
+    margin-top: 10px;
+    box-sizing: border-box;
+    border-top: solid 1px #ccc;
+    font-weight: normal;
+}
+.post_show_body_img {
+    position: absolute;
+    left: 0px;
+    padding: 0px;
+    min-height: 1140px;
+    min-width: 1140px;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+.post_show_body_img img {
+    height: 720px;
+    width: 720px;
+    object-fit: contain;
+}
+
+/*コメント*/
+#comment_body{
+    position: absolute;
+    background-color: rgba(204,204,204,0.5);
+    border: solid 2px green;
+    border-radius: 10px;
+    padding: 5px;
+}
+.comment {
+    max-width: 15em;
+}
+.comment_user {
+    border-bottom: 1px solid green;
+    font-weight: bold;
+}
+.comment_delete_form {
+    padding-top: 5px;
+    border-top: solid 1px green;
+}
+.comment_delete {
+    background-color: rgba(204,204,204,0.5);
+    border: solid 1px green;
+}
+
+/*モーダル*/
+.modal_textarea {
+    width: 16em;
+}
+
+/*テスト用*/
+/*.test {*/
+/*    width: 20em;*/
+/*}*/
